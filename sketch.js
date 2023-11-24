@@ -1,5 +1,5 @@
-// Project Title
-// Your Name
+// CS30 Major Project
+// Jonah Johnson
 // Date
 //
 // Extra for Experts:
@@ -12,4 +12,12 @@ function setup() {
 function draw() {
   background(220);
   circle(mouseX, mouseY, 20)
+}
+
+class Enemies {
+  constructor(x, y, image) {
+    this.x = x;
+    this.y = y;
+    this.image
+  }
 }
