@@ -10,6 +10,6 @@ Movement/gravity based 2d shooter
 ## Nice to have
 -semi solid platforms(come up from under, drop down with s)
 -different types of enemies with different movement patters, abilities, ext
--Different abilitys and/or items
+-Different abilities and/or items
 
 
