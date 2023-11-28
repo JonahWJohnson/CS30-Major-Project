@@ -8,6 +8,7 @@ Movement/gravity based 2d shooter
 -dash ability
 -primary and secondary weapon
 -timed survival
+-distinct player and enemies shapes or colors
 
 ## Nice to have
 -semi solid platforms(come up from under, drop down with s)
@@ -15,6 +16,4 @@ Movement/gravity based 2d shooter
 -Different abilities and/or items
 -Round/wave system
 -wavedash mechanic by dashing into ground
-
-
-
+-imported or self made models
