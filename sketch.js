@@ -15,9 +15,8 @@ function draw() {
 }
 
 class Enemies {
-  constructor(x, y, image) {
+  constructor(x, y) {
     this.x = x;
-    this.y = y;
-    this.image
+    this.y = y
   }
 }
