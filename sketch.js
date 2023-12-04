@@ -4,7 +4,13 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
-let player = {
+
+
+
+function setup() {
+  createCanvas(1600, 900);
+  world.gravity.y = 10;
+  let player = {
   x : width/2,
   y : height/2,
   dx : 5,
@@ -13,11 +19,6 @@ let player = {
   width : 10,
   height : 10,
 }
-
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  world.gravity.y = 10
 }
 
 function draw() {
@@ -40,4 +41,14 @@ function displayPlayer() {
 function updatePlayer() {
   player.x += player.dx;
   player.y += player.dy;
+}
+
+function centerPlayer() {
+  player.x = width/2
+  player.y 
+}
+
+function keyPressed() {
+  centerPlayer();
+  console.log("r");
 }
