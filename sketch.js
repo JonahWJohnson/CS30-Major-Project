@@ -1,8 +1,5 @@
 let player;
-let input = {
-	x : 'neutral',
-	y : 'neutral',
-}
+let floor;
 
 function setup() {
 	new Canvas(1600, 900);
@@ -11,7 +8,6 @@ function setup() {
 	player = new Sprite();
 	player.y = height/2;
 	player.x = width/2;
-	player.dx = 0;
 	player.radius = 50;
 	player.friction = 2
 	player.dashLength = 20
@@ -29,74 +25,55 @@ function setup() {
 
 function draw() {
 	background('gray');
-	checkInputs();
+	checkCollide();
 	playerMovement();
+	// console.log(player.canDash)
 }
 
 
 function playerMovement() {
 	// left right movement
-	if (input.x = 'right') {
-		player.vel.x = 10 + player.dx;
-
+	if (kb.pressing('d')) {
+		player.vel.x = 10;
 	}
-	if (input.) {
+	else if (kb.pressing('a')) {
 		player.vel.x = -10;
 	}
-	if (input.x = 'neutal') {
+	else {
 		player.vel.x = 0
 	}
-
 	if (kb.presses('space')) {
 		player.vel.y = -10;
 	}
 
 // shift/dash
 	if (kb.presses('shift')) {
-		dash();	
+		if (player.canDash) {
+			dash();
+		}				
 	}
 }
 
 function dash() {
+	player.canDash = false;
+	if (player.isGrounded) {
+		player.canDash = true;
+	}
 	if (kb.pressing('d')) {
 		for (i = 0; i < player.dashLength; i++) {
-			player.dx += 1
+			player.dx += 1;
+			
 		}
 	}
 }
 
-function checkInputs() {
-// checks wasd input and sets input.x and input.y 
-// to up, up, left, down, right, or neutral accordingly
-	if (kb.pressing('d') && kb.pressing('a')) {
-		input.x = 'neutral'
-	}
-	else if (kb.pressing('d')) {
-		input.x = 'right'
-	}
-	else if (kb.pressing('a')) {
-		input.x = 'left'
+function checkCollide() {
+	if (player.colliding(floor)) {
+		player.grounded = true;
+		console.log(player.grounded);
 	}
 	else {
-		input.x = 'neutral'
+		player.grounded = false
 	}
-	if (kb.pressing('w') && kb.pressing('s')) {
-		input.y = 'neutral'
-	}
-	else if (kb.pressing('w')) {
-		input.y = 'up'
-	}
-	else if (kb.pressing('s')) {
-		input.y = 'down'
-	}
-	else {
-		input.y = 'neutral'
-	}
-
-	// if (input.x !== 'neutral') {
-	// 	console.log(input.x)
-	// }
-	// if (input.y !== 'neutral') {
-	// 	console.log(input.y)
-	// }
+	console.log(player.grounded);
 }
