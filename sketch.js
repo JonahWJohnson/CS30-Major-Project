@@ -10,13 +10,15 @@ function setup() {
 	player.x = width/2;
 	player.width = 30;
 	player.height = 30;
-	player.friction = 0
-	player.bouncinessd = 0
-	player.dashLength = 20
-	player.grounded = false
-	player.canDash = true
-	player.dashing = false
-	player.color = 'red'
+	player.friction = 0;
+	player.bounciness = 0;
+	player.dashLength = 20;
+	player.grounded = false;
+	player.canDash = true;
+	player.dashing = false;
+	player.color = 'red';
+	player.rotation = 0
+	player.rotationLock = true;
 
 	floor = new Sprite();
 	floor.y = 870;
@@ -29,7 +31,7 @@ function draw() {
 	background('gray');
 	checkCollide();
 	playerMovement();
-	// console.log(player.canDash)
+	console.log(player.canDash)
 }
 
 
@@ -47,7 +49,17 @@ function playerMovement() {
 
 	//jump (space)
 	if (kb.presses('space')) {
-		player.vel.y = -10;
+		if (player.grounded) {
+			player.vel.y = -10;
+		}
+		//buffered jump
+		else {
+			for(let i = 0; i < 60; i++) {
+				if (player.grounded) {
+					player.vel.y = -10;
+				}
+			}
+		}
 	}
 
 	//dash (shift)
@@ -61,22 +73,20 @@ function playerMovement() {
 function dash() {
 	//checks if player meets conditions to dash and dashes if so
 	player.canDash = false;
-	if (player.isGrounded) {
-		player.canDash = true;
-	}
-	if (kb.pressing('d')) {
+	/*if (kb.pressing('d')) {
 		for (i = 0; i < player.dashLength; i++) {
 			player.dx += 1;
 		}
-	}
+	} */
 }
 
 function checkCollide() {
-	//checks if player is on the ground and changes player.isGrounded state variable accordingly
+	//checks if player is on the ground and changes player.grounded state variable accordingly
 	if (player.colliding(floor)) {
 		player.grounded = true;
 		console.log(player.grounded);
-		player.color = 'green'
+		player.canDash = true;
+		player.color = 'green';
 	}
 	else {
 		player.grounded = false
